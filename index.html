@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Clicker Game</title>
+</head>
+<body>
+  <h1>Clicker</h1>
+
+  <div>Count: <span id="count">0</span></div>
+
+  <button id="btn">Click me</button>
+
+  <script>
+    const API = "http://192.168.1.104:5000"; // your Pi IP
+
+    const countEl = document.getElementById("count");
+    const btn = document.getElementById("btn");
+
+    // 1. LOAD current count
+    async function loadCount() {
+      const res = await fetch(`${API}/api/clicks`);
+      const data = await res.json();
+      countEl.textContent = data.clicks;
+    }
+
+    // 2. SEND click to server
+    async function sendClick() {
+      const res = await fetch(`${API}/api/click`, {
+        method: "POST"
+      });
+
+      const data = await res.json();
+      countEl.textContent = data.clicks;
+    }
+
+    btn.addEventListener("click", sendClick);
+
+    loadCount();
+  </script>
+</body>
+</html>
