@@ -9,6 +9,7 @@
   <div>Count: <span id="count">0</span></div>
 
   <button id="btn">Click me</button>
+  <button onclick="reset()">reset and sabatage everyone elses hard work</button>
 
   <script>
   const API = "https://riptide-fanfare-perfectly.ngrok-free.dev";
@@ -35,6 +36,16 @@
     countEl.textContent = data.clicks;
   }
 
+async function reset() {
+    const res = await fetch(`${API}/api/reset`, {
+      method: "POST"
+    });
+
+    
+    countEl.textContent = "0";
+  }
+
+    
   btn.addEventListener("click", sendClick);
 
   loadCount();
