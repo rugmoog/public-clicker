@@ -17,7 +17,7 @@
   const btn = document.getElementById("btn");
 
   async function loadCount() {
-    const res = fetch(`${API}/api/clicks`, {
+    const res = await fetch(`${API}/api/clicks`, {
   headers: {
     "ngrok-skip-browser-warning": "true"
   }
