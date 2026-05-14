@@ -17,7 +17,7 @@
   const btn = document.getElementById("btn");
 
   async function loadCount() {
-    const res = await fetch(`${API}/api/clicks`);
+    const res = await fetch(`${API}/api/clicks`, {method: "GET"});
     const data = await res.json();
     countEl.textContent = data.clicks;
   }
