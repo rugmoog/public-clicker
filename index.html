@@ -11,31 +11,29 @@
   <button id="btn">Click me</button>
 
   <script>
-    const API = "https://riptide-fanfare-perfectly.ngrok-free.dev"; // your Pi IP
+  const API = "https://riptide-fanfare-perfectly.ngrok-free.dev";
 
-    const countEl = document.getElementById("count");
-    const btn = document.getElementById("btn");
+  const countEl = document.getElementById("count");
+  const btn = document.getElementById("btn");
 
-    // 1. LOAD current count
-    async function loadCount() {
-      const res = await fetch(`${API}/api/clicks`);
-      const data = await res.json();
-      countEl.textContent = data.clicks;
-    }
+  async function loadCount() {
+    const res = await fetch(`${API}/api/clicks`, { cache: "no-store" });
+    const data = await res.json();
+    countEl.textContent = data.clicks;
+  }
 
-    // 2. SEND click to server
-    async function sendClick() {
-      const res = await fetch(`${API}/api/click`, {
-        method: "POST"
-      });
+  async function sendClick() {
+    const res = await fetch(`${API}/api/clicks`, {
+      method: "POST"
+    });
 
-      const data = await res.json();
-      countEl.textContent = data.clicks;
-    }
+    const data = await res.json();
+    countEl.textContent = data.clicks;
+  }
 
-    btn.addEventListener("click", sendClick);
+  btn.addEventListener("click", sendClick);
 
-    loadCount();
-  </script>
+  loadCount();
+</script>
 </body>
 </html>
