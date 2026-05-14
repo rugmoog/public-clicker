@@ -23,7 +23,7 @@
   }
 
   async function sendClick() {
-    const res = await fetch(`${API}/api/clicks`, {
+    const res = await fetch(`${API}/api/click`, {
       method: "POST"
     });
 
@@ -34,6 +34,7 @@
   btn.addEventListener("click", sendClick);
 
   loadCount();
+  setInterval(loadCount, 2000)
 </script>
 </body>
 </html>
